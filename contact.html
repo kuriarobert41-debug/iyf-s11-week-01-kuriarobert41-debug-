@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — kuriarobert41-debug</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;color:#111}
+    .container{max-width:700px;margin:0 auto;padding:1rem}
+    nav a{margin-right:1rem;text-decoration:none;color:#0366d6}
+    form fieldset{border:1px solid #e1e4e8;padding:1rem;margin-bottom:1rem;border-radius:6px}
+    label{display:block;margin-bottom:.25rem}
+    input,select,textarea{width:100%;padding:.5rem;margin-bottom:.5rem;border:1px solid #d1d5da;border-radius:4px}
+    .row{display:flex;gap:1rem}
+    .row > *{flex:1}
+    .actions{text-align:right}
+    .error{color:#b00020}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <nav aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Contact</h1>
+    <p>If you'd like to get in touch, use the form below. This demo uses client-side validation; replace the form action with your server endpoint or a service like Formspree to receive messages.</p>
+
+    <form id="contactForm" novalidate>
+      <fieldset>
+        <legend>Contact details</legend>
+
+        <label for="fullName">Full name <span aria-hidden="true">*</span></label>
+        <input id="fullName" name="fullName" type="text" placeholder="Your full name" required>
+
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" placeholder="+1234567890">
+
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+          <option value="general">General question</option>
+          <option value="project">Project inquiry</option>
+          <option value="feedback">Feedback</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Message</legend>
+        <label for="message">Message (min 50 characters) <span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" rows="6" placeholder="Write your message here" required minlength="50"></textarea>
+
+        <label>
+          <input id="newsletter" name="newsletter" type="checkbox"> Subscribe to newsletter
+        </label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit">Send message</button>
+      </div>
+
+      <p id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <footer class="container">
+    <p>© 2026 kuriarobert41-debug</p>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var form = e.target;
+      var status = document.getElementById('formStatus');
+      if(!form.checkValidity()){
+        form.reportValidity();
+        status.textContent = 'Please fix the errors above.';
+        status.className = 'error';
+        return;
+      }
+      var msg = form.message.value.trim();
+      if(msg.length < 50){
+        status.textContent = 'Message must be at least 50 characters.';
+        status.className = 'error';
+        document.getElementById('message').focus();
+        return;
+      }
+      // Demo completion: in a real site, POST to server or use a form service.
+      status.className = '';
+      status.textContent = 'Thank you — your message looks good (demo). Replace with a real form endpoint to submit.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
