@@ -1,4 +1,4 @@
-# Week 1 Portfolio — kuria robert
+# Week 1 Portfolio — Margaret wangui 
 
 This repository contains the Week 1 deliverables for IYF Season 11: a multi-page portfolio site with semantic HTML, a contact form, and accessibility improvements.
 
